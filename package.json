@@ -1,0 +1,62 @@
+{
+  "name": "@mscode-pl/feed-lint",
+  "version": "0.1.0",
+  "description": "Check Google Merchant and Ceneo product feeds before you upload them: missing fields, bad prices, wrong GTINs and broken links, with line numbers.",
+  "license": "MIT",
+  "author": "MSCode (https://mscode.pl)",
+  "type": "module",
+  "homepage": "https://github.com/mscode-pl/feed-lint#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mscode-pl/feed-lint.git"
+  },
+  "bugs": "https://github.com/mscode-pl/feed-lint/issues",
+  "keywords": [
+    "feed",
+    "product-feed",
+    "lint",
+    "linter",
+    "google-merchant",
+    "google-shopping",
+    "merchant-center",
+    "ceneo",
+    "xml",
+    "gtin",
+    "ecommerce",
+    "cli"
+  ],
+  "bin": {
+    "feed-lint": "dist/cli/main.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@12.14.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "sax": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.4",
+    "@types/sax": "^1.2.7",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.2"
+  }
+}
