@@ -1,5 +1,5 @@
 name: feed-lint
-description: Check Google Merchant and Ceneo product feeds for missing fields, bad prices, wrong GTINs and broken links, as pull request annotations and one comment.
+description: Check Google Merchant and Ceneo product feeds for missing fields, bad prices, wrong GTINs and broken links.
 author: MSCode
 branding:
   icon: shopping-cart
