@@ -28,12 +28,15 @@ jobs:
   action:
     runs-on: ubuntu-latest
     steps:
+      # In a subfolder: inside this repo npx would take the local package of the same name for the release.
       - uses: actions/checkout@v4
+        with:
+          path: src
       # Checks the composite wiring against a release already on npm.
       - id: lint
-        uses: ./
+        uses: ./src
         with:
-          feeds: examples/google.xml examples/ceneo.xml
+          feeds: src/examples/google.xml src/examples/ceneo.xml
           comment: 'false'
           fail-on: never
           version: 0.1.0
