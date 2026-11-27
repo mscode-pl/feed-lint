@@ -1,0 +1,102 @@
+name: feed-lint
+description: Check Google Merchant and Ceneo product feeds for missing fields, bad prices, wrong GTINs and broken links, as pull request annotations and one comment.
+author: MSCode
+branding:
+  icon: shopping-cart
+  color: blue
+
+inputs:
+  feeds:
+    description: Feed files, globs or URLs to check, separated by spaces or new lines. Empty uses "feeds" from feed-lint.config.json.
+    default: ''
+  ignore:
+    description: Rules to skip, comma separated, e.g. google/identifiers,ceneo/brand.
+    default: ''
+  check-urls:
+    description: Also request product links and images.
+    default: 'false'
+  url-limit:
+    description: Unique URLs to check per feed, 0 for all. Empty uses the config file, then 200.
+    default: ''
+  fail-on:
+    description: Fail the step on error, warning or never. Empty uses the config file, then error.
+    default: ''
+  config:
+    description: Path to a config file. Empty uses feed-lint.config.json when it exists.
+    default: ''
+  comment:
+    description: Post the report as one pull request comment and update it on every push. Needs pull-requests write permission.
+    default: 'true'
+  github-token:
+    description: Token used to post the comment.
+    default: ${{ github.token }}
+  version:
+    description: feed-lint version from npm. Empty uses the version this action was released with.
+    default: ''
+
+outputs:
+  report:
+    description: Path to the Markdown report.
+    value: ${{ steps.lint.outputs.report }}
+  exit-code:
+    description: 0 when the check passed, 1 when it found issues at the fail-on level, 2 for bad input or a feed that could not be read.
+    value: ${{ steps.lint.outputs.code }}
+
+runs:
+  using: composite
+  steps:
+    - id: node
+      shell: bash
+      run: echo "major=$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || echo 0)" >> "$GITHUB_OUTPUT"
+
+    - if: steps.node.outputs.major < 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - id: lint
+      shell: bash
+      env:
+        INPUT_FEEDS: ${{ inputs.feeds }}
+        INPUT_IGNORE: ${{ inputs.ignore }}
+        INPUT_CHECK_URLS: ${{ inputs.check-urls }}
+        INPUT_URL_LIMIT: ${{ inputs.url-limit }}
+        INPUT_FAIL_ON: ${{ inputs.fail-on }}
+        INPUT_CONFIG: ${{ inputs.config }}
+        INPUT_VERSION: ${{ inputs.version }}
+      run: |
+        set +e
+        version="$INPUT_VERSION"
+        if [ -z "$version" ]; then
+          version="$(node -p 'require(process.argv[1]).version' "$GITHUB_ACTION_PATH/package.json")"
+        fi
+        args=()
+        for feed in $INPUT_FEEDS; do args+=("$feed"); done
+        if [ -n "$INPUT_IGNORE" ]; then args+=(--ignore "$INPUT_IGNORE"); fi
+        if [ "$INPUT_CHECK_URLS" = "true" ]; then args+=(--check-urls); fi
+        if [ -n "$INPUT_URL_LIMIT" ]; then args+=(--url-limit "$INPUT_URL_LIMIT"); fi
+        if [ -n "$INPUT_FAIL_ON" ]; then args+=(--fail-on "$INPUT_FAIL_ON"); fi
+        if [ -n "$INPUT_CONFIG" ]; then args+=(--config "$INPUT_CONFIG"); fi
+
+        report="$RUNNER_TEMP/feed-lint-report.md"
+        npx -y --package="@mscode-pl/feed-lint@$version" -- feed-lint "${args[@]}" --format github --output "$report"
+        code=$?
+        echo "code=$code" >> "$GITHUB_OUTPUT"
+        echo "report=$report" >> "$GITHUB_OUTPUT"
+        if [ -f "$report" ]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi
+
+    - if: always() && inputs.comment == 'true' && steps.lint.outputs.code != '2' && github.event.pull_request
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        REPORT: ${{ steps.lint.outputs.report }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: node "$GITHUB_ACTION_PATH/action/comment.mjs"
+
+    - if: steps.lint.outputs.code != '0'
+      shell: bash
+      env:
+        CODE: ${{ steps.lint.outputs.code }}
+      run: |
+        echo "feed-lint exited with code $CODE."
+        exit "$CODE"
