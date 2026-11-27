@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Shop</title>
+    <link>https://shop.example</link>
+    <description>Shop</description>
+    <item>
+      <g:id>SKU-1</g:id>
+      <g:title>Kubek ceramiczny 300 ml biały</g:title>
+      <g:description>Kubek z białej porcelany, można myć w zmywarce.</g:description>
+      <g:link>https://shop.example/kubek</g:link>
+      <g:image_link>https://shop.example/kubek.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>29.99 PLN</g:price>
+      <g:sale_price>24.99 PLN</g:sale_price>
+      <g:sale_price_effective_date>2026-12-01T00:00+0100/2026-12-24T23:59+0100</g:sale_price_effective_date>
+      <g:gtin>5901234123457</g:gtin>
+      <g:brand>Acme</g:brand>
+      <g:condition>new</g:condition>
+      <g:color>Biały/Czarny</g:color>
+    </item>
+    <item>
+      <g:id>SKU-2</g:id>
+      <g:title>Ręcznie robiona miska</g:title>
+      <g:description>Miska z gliny.</g:description>
+      <g:link>https://shop.example/miska</g:link>
+      <g:image_link>https://shop.example/miska.webp</g:image_link>
+      <g:availability>preorder</g:availability>
+      <g:availability_date>2027-01-10T10:00Z</g:availability_date>
+      <g:price>80 PLN</g:price>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<offers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1">
+  <responsibleProducers>
+    <p id="prod-1"><name>Acme</name></p>
+  </responsibleProducers>
+  <responsiblePersons>
+    <p id="person-1"><name>EU Rep</name></p>
+  </responsiblePersons>
+  <o id="1" url="https://shop.example/p/1" price="12.99" avail="1" stock="5">
+    <cat><![CDATA[Dom i ogród/Ogród/Pompy]]></cat>
+    <name><![CDATA[Pompa ogrodowa]]></name>
+    <imgs><main url="https://shop.example/1.jpg"/><i url="https://shop.example/1b.jpg"/></imgs>
+    <desc><![CDATA[<p>Opis <b>pompy</b></p>]]></desc>
+    <attrs><a name="Kod EAN"><![CDATA[5901234123457]]></a><a name="Producent odpowiedzialny">prod-1</a></attrs>
+  </o>
+  <o update="1" id="2" price="0"/>
+</offers>

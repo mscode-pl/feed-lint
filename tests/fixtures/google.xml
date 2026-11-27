@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Shop</title>
+    <link>https://shop.example</link>
+    <item>
+      <g:id>A1</g:id>
+      <title>Plain RSS title</title>
+      <g:price>19.99 PLN</g:price>
+      <g:shipping>
+        <g:country>PL</g:country>
+        <g:price>9.99 PLN</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>A2</g:id>
+      <g:title><![CDATA[Mug & cup]]></g:title>
+    </item>
+  </channel>
+</rss>

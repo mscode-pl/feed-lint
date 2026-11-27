@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <item>
+      <g:id>A</g:id>
+      <g:title>KUBEK CERAMICZNY SUPER JAKOŚĆ - DARMOWA DOSTAWA!!</g:title>
+      <g:description><![CDATA[<p>Opis <b>kubka</b></p>]]></g:description>
+      <g:link>shop.example/kubek</g:link>
+      <g:image_link>http://shop.example/zdjęcie kubka.svg</g:image_link>
+      <g:availability>available</g:availability>
+      <g:price>29,99 zł</g:price>
+      <g:gtin>5901234123458</g:gtin>
+      <g:brand>N/A</g:brand>
+      <g:color>#ffffff</g:color>
+      <g:condition>nowy</g:condition>
+    </item>
+    <item>
+      <g:id>A</g:id>
+      <g:title>Kubek</g:title>
+      <g:link>https://shop.example/k</g:link>
+      <g:image_link>https://shop.example/k.jpg</g:image_link>
+      <g:availability>backorder</g:availability>
+      <g:price>10.00 PLN</g:price>
+      <g:sale_price>12.00 PLN</g:sale_price>
+      <g:sale_price_effective_date>2026-12-24/2026-12-01</g:sale_price_effective_date>
+      <g:gtin>2001234567893</g:gtin>
+      <g:gtin>12345</g:gtin>
+      <g:brand>Acme</g:brand>
+    </item>
+    <item>
+      <g:id>B</g:id>
+      <g:title>Kubek</g:title>
+      <g:description>Kubek</g:description>
+      <g:link>https://shop.example/b</g:link>
+      <g:image_link>https://shop.example/b.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>0.00 PLN</g:price>
+      <g:gtin>5901234123457</g:gtin>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+  </channel>
+</rss>

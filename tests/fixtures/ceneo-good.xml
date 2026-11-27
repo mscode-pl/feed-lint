@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<offers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1" fileVersion="v1">
+  <responsibleProducers>
+    <p id="prod-1"><name>Acme</name></p>
+  </responsibleProducers>
+  <o id="1" url="https://shop.example/p/1" price="1299.99" avail="1" stock="5" weight="12.5" basket="1">
+    <cat><![CDATA[RTV/Telewizory]]></cat>
+    <name><![CDATA[Telewizor Acme 55 cali]]></name>
+    <imgs><main url="https://shop.example/1.jpg"/><i url="https://shop.example/1b.jpg"/></imgs>
+    <desc><![CDATA[<h2>Telewizor</h2><p>Opis <b>telewizora</b><br/>z pilotem.</p><ul><li>55 cali</li></ul>]]></desc>
+    <attrs>
+      <a name="Marka"><![CDATA[Acme]]></a>
+      <a name="Kod EAN"><![CDATA[5901234123457]]></a>
+      <a name="Kod producenta">TV-55</a>
+      <a name="Klasa energetyczna">E</a>
+      <a name="Unijny znak CE">1</a>
+      <a name="Rok nadania znaku CE">2024</a>
+      <a name="Producent odpowiedzialny">prod-1</a>
+    </attrs>
+  </o>
+  <o id="2" url="https://shop.example/p/2" price="49.00" avail="110">
+    <cat>Książki/Literatura piękna</cat>
+    <name>Powieść</name>
+    <imgs><main url="https://shop.example/2.jpg"/></imgs>
+    <desc>Powieść w twardej oprawie.</desc>
+    <attrs><a name="Producent">Wydawnictwo</a><a name="Kod ISBN">978-83-240-1234-3</a></attrs>
+  </o>
+  <o update="1" id="3" price="0"/>
+</offers>

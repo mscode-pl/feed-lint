@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<offers version="1">
+  <o id="1" url="shop.example/1" price="12,99" avail="2" stock="-1" weight="1,5" basket="yes">
+    <cat>Promocja</cat>
+    <name>Pompa ogrodowa - darmowa dostawa</name>
+    <imgs><i url="https://shop.example/1.jpg"/></imgs>
+    <desc><![CDATA[<div>Opis <a href="https://x.pl">link</a></div>]]></desc>
+    <attrs>
+      <a name="Kod EAN">5901234123458</a>
+      <a name="Kod ISBN">12345</a>
+      <a name="Kod leku">12</a>
+      <a name="Klasa energetyczna">H</a>
+      <a name="Unijny znak CE">tak</a>
+      <a name="Producent odpowiedzialny">nobody</a>
+      <a name="Kod EAN">5901234123457</a>
+    </attrs>
+  </o>
+  <o id="1" price="0" avail="1" url="https://shop.example/2">
+    <cat>Dom/Ogród</cat>
+    <name>Coś</name>
+    <imgs><main url="ftp://shop.example/2.jpg"/></imgs>
+    <desc><p>Opis bez CDATA</p></desc>
+    <attrs><a name="Unijny znak CE">1</a></attrs>
+  </o>
+  <o>
+  </o>
+</offers>
