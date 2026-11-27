@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Example Shop</title>
+    <link>https://shop.example</link>
+    <description>Example product feed for feed-lint</description>
+    <item>
+      <g:id>MUG-300-WHITE</g:id>
+      <g:title>Ceramic mug 300 ml, white</g:title>
+      <g:description>White porcelain mug, dishwasher safe.</g:description>
+      <g:link>https://shop.example/mug-300?variant=white</g:link>
+      <g:image_link>https://shop.example/img/mug-300-white.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>29.99 PLN</g:price>
+      <g:sale_price>34.99 PLN</g:sale_price>
+      <g:gtin>5901234123458</g:gtin>
+      <g:brand>Example</g:brand>
+      <g:condition>new</g:condition>
+    </item>
+    <item>
+      <g:id>MUG-300-BLACK</g:id>
+      <g:title>CERAMIC MUG 300 ML BLACK - FREE SHIPPING!!</g:title>
+      <g:description>Black porcelain mug, dishwasher safe.</g:description>
+      <g:link>https://shop.example/mug-300?variant=black</g:link>
+      <g:image_link>https://shop.example/img/mug-300-black.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>29,99 zł</g:price>
+      <g:brand>Example</g:brand>
+      <g:color>212</g:color>
+    </item>
+    <item>
+      <g:id>MUG-300-WHITE</g:id>
+      <g:title>Ceramic mug 300 ml, white</g:title>
+      <g:description>White porcelain mug, dishwasher safe.</g:description>
+      <g:link>https://shop.example/mug-300?variant=white</g:link>
+      <g:image_link>https://shop.example/img/mug-300-white.jpg</g:image_link>
+      <g:availability>preorder</g:availability>
+      <g:price>29.99 PLN</g:price>
+      <g:gtin>5901234123457</g:gtin>
+      <g:brand>N/A</g:brand>
+    </item>
+  </channel>
+</rss>

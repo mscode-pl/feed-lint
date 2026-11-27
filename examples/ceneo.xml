@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<offers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1">
+  <o id="mug-300-white" url="https://shop.example/mug-300?variant=white" price="29.99" avail="1" stock="12">
+    <cat><![CDATA[Dom i ogród/Kuchnia/Kubki]]></cat>
+    <name><![CDATA[Kubek ceramiczny 300 ml biały]]></name>
+    <imgs><main url="https://shop.example/img/mug-300-white.jpg"/></imgs>
+    <desc><![CDATA[<p>Kubek z białej porcelany, można myć w zmywarce.</p>]]></desc>
+    <attrs>
+      <a name="Marka"><![CDATA[Example]]></a>
+      <a name="Kod EAN"><![CDATA[5901234123457]]></a>
+    </attrs>
+  </o>
+  <o id="mug-300-black" url="https://shop.example/mug-300?variant=black" price="29,99" avail="2">
+    <cat><![CDATA[Promocja]]></cat>
+    <name><![CDATA[Kubek ceramiczny 300 ml czarny - darmowa dostawa]]></name>
+    <imgs><i url="https://shop.example/img/mug-300-black.jpg"/></imgs>
+    <desc><![CDATA[<div style="color:red">Kubek z czarnej porcelany.</div>]]></desc>
+    <attrs>
+      <a name="Kod EAN"><![CDATA[5901234123458]]></a>
+    </attrs>
+  </o>
+</offers>
