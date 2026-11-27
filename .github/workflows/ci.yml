@@ -24,3 +24,26 @@ jobs:
       - run: pnpm build
       - run: node dist/cli/main.js examples/google.xml examples/ceneo.xml --fail-on never
       - run: node dist/cli/main.js mcp < /dev/null
+
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      # In a subfolder: inside this repo npx would take the local package of the same name for the release.
+      - uses: actions/checkout@v4
+        with:
+          path: src
+      # Checks the composite wiring against a release already on npm.
+      - id: lint
+        uses: ./src
+        with:
+          feeds: src/examples/google.xml src/examples/ceneo.xml
+          comment: 'false'
+          fail-on: never
+          version: 0.1.0
+      - env:
+          CODE: ${{ steps.lint.outputs.exit-code }}
+          REPORT: ${{ steps.lint.outputs.report }}
+        run: |
+          test "$CODE" = "0"
+          grep -q "google/duplicate-id" "$REPORT"
+          grep -q "ceneo/avail-value" "$REPORT"
