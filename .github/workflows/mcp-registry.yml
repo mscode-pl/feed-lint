@@ -1,0 +1,57 @@
+name: MCP Registry
+
+# Publishes server.json to registry.modelcontextprotocol.io after a release.
+# The npm package is published by hand first; the registry checks its mcpName.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      MCP_PUBLISHER_VERSION: v1.8.19
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check server.json matches package.json
+        run: |
+          node -e '
+            const pkg = require("./package.json");
+            const server = require("./server.json");
+            const versions = [server.version, ...server.packages.map((p) => p.version)];
+            if (server.name !== pkg.mcpName) throw new Error(`server.json name ${server.name} != mcpName ${pkg.mcpName}`);
+            if (versions.some((v) => v !== pkg.version)) throw new Error(`server.json versions ${versions} != ${pkg.version}`);
+          '
+
+      - name: Wait for the version on npm
+        run: |
+          name="$(node -p 'require("./package.json").name')"
+          version="$(node -p 'require("./package.json").version')"
+          for attempt in $(seq 1 30); do
+            if [ "$(npm view "$name@$version" mcpName --registry=https://registry.npmjs.org 2>/dev/null)" != "" ]; then exit 0; fi
+            echo "Waiting for $name@$version on npm ($attempt/30)"
+            sleep 20
+          done
+          echo "::error::$name@$version with mcpName is not on npm. Publish it first, then re-run this workflow."
+          exit 1
+
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Download and verify mcp-publisher
+        run: |
+          set -euo pipefail
+          archive="mcp-publisher_linux_amd64.tar.gz"
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          cosign verify-blob --bundle "$archive.sigstore.json" --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/${MCP_PUBLISHER_VERSION}" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" "$archive"
+          tar xzf "$archive" mcp-publisher
+
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish

@@ -1,7 +1,8 @@
 {
   "name": "@mscode-pl/feed-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Check Google Merchant and Ceneo product feeds before you upload them: missing fields, bad prices, wrong GTINs and broken links, with line numbers.",
+  "mcpName": "io.github.mscode-pl/feed-lint",
   "license": "MIT",
   "author": "MSCode (https://mscode.pl)",
   "type": "module",
